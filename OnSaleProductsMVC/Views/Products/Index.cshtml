@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Index";
+    var product = new List<Product>{
+    new Product{Name="TV", Price = 250.55m, OnSale=true},
+    new Product{Name="MP3 Player", Price = 59.99m, OnSale=false},
+    new Product{Name="Xbox One", Price = 300.00m, OnSale=true}
+    };
+
+    var color = "beige";
+    var sum = 0m;
+}
+
+<h2 style="text-align:center">Electronics</h2>
+
+<table class="table table-responsive table-hover">
+    <tr style="font-family:'Early Bird'; font-size:100px;">
+        <th style=" border-right:2px black solid; text-align:center">Name</th>
+        <th style=" border-right:2px black solid;  text-align:center ">Price</th>
+        <th style=" border-right:2px black solid;  text-align:center">On Sale</th>
+        <th style=" border-right:2px black solid;  text-align:center">Sale Price</th>
+    </tr>
+    @foreach (var p in product)
+    {
+        sum += p.Price * 0.5m;
+        if (p.OnSale == true)
+        {
+            color = "lightgreen";
+            
+        }
+        else
+        {
+            color = "pink";
+        }
+        <tr style="background-color:@color">
+            <td style=" text-align:center">@p.Name</td>
+            <td style=" text-align:center">$@p.Price</td>
+            <td style=" text-align:center" id="sale">@p.OnSale</td>
+            @if (p.OnSale)
+            {
+                <td style="text-align:center; background: lightblue;">$@sum</td>
+            }
+           
+
+        </tr>
+
+    }
+</table>
