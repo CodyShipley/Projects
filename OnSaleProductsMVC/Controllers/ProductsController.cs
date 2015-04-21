@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnSaleProductsMVC.Models;
+using OnSaleProductsMVC.Views.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,19 @@ namespace OnSaleProductsMVC.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View();
+            var products = new List<Product>{
+                new Product{Name="TV", Price = 250.55m, OnSale=true},
+                new Product{Name="MP3 Player", Price = 59.99m, OnSale=false},
+                new Product{Name="Xbox One", Price = 300.00m, OnSale=true}
+            };
+
+           // ViewData["products"] = products;
+           // ViewBag.Products = products;
+            var vm = new ProductIndexViewModel
+            {
+               Products = products
+            };
+            return View(vm);
         }
 
         // GET: Products/Details/5
